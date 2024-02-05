@@ -8,69 +8,72 @@
 
 const API_KEY = "50a0fcc9262046aa807966267cd2ef2e";
 const url = "https://newsapi.org/v2/everything?q=";
-window.addEventListener("load", () => fetchNews("India"));
 
-function reload() {
-    window.location.reload();
+async function fetchData(query){
+    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`)
+    const data = await res.json()
+    return data
+}
+fetchData("all").then(data => renderMain(data.articles))
+
+//menu btn
+let mobilemenu = document.querySelector(".mobile")
+let menuBtn = document.querySelector(".menuBtn")
+let menuBtnDisplay = true;
+
+menuBtn.addEventListener("click",()=>{
+    mobilemenu.classList.toggle("hidden")
+})
+
+
+//render news 
+function renderMain(arr){
+    let mainHTML = ''
+    for(let i = 0 ; i < arr.length ;i++){
+        if(arr[i].urlToImage){
+        mainHTML += ` <div class="card">
+                        <a href=${arr[i].url}>
+                        <img src=${arr[i].urlToImage} lazy="loading" />
+                        <h4>${arr[i].title}</h4>
+                        <div class="publishbyDate">
+                            <p>${arr[i].source.name}</p>
+                            <span>•</span>
+                            <p>${new Date(arr[i].publishedAt).toLocaleDateString()}</p>
+                        </div>
+                        <div class="desc">
+                           ${arr[i].description}
+                        </div>
+                        </a>
+                     </div>
+        `
+        }
+    }
+
+    document.querySelector("main").innerHTML = mainHTML
 }
 
-async function fetchNews(query) {
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-    const data = await res.json();
-    bindData(data.articles);
+
+const searchBtn = document.getElementById("searchForm")
+const searchBtnMobile = document.getElementById("searchFormMobile")
+const searchInputMobile = document.getElementById("searchInputMobile") 
+const searchInput = document.getElementById("searchInput")
+
+searchBtn.addEventListener("submit",async(e)=>{
+    e.preventDefault()
+    console.log(searchInput.value)
+
+    const data = await fetchData(searchInput.value)
+    renderMain(data.articles)
+
+})
+searchBtnMobile.addEventListener("submit",async(e)=>{
+    e.preventDefault()
+    const data = await fetchData(searchInputMobile.value)
+    renderMain(data.articles)
+})
+
+
+async function Search(query){
+    const data = await fetchData(query)
+    renderMain(data.articles)
 }
-
-function bindData(articles) {
-    const cardsContainer = document.getElementById("cards-container");
-    const newsCardTemplate = document.getElementById("template-news-card");
-
-    cardsContainer.innerHTML = "";
-
-    articles.forEach((article) => {
-        if (!article.urlToImage) return;
-        const cardClone = newsCardTemplate.content.cloneNode(true);
-        fillDataInCard(cardClone, article);
-        cardsContainer.appendChild(cardClone);
-    });
-}
-
-function fillDataInCard(cardClone, article) {
-    const newsImg = cardClone.querySelector("#news-img");
-    const newsTitle = cardClone.querySelector("#news-title");
-    const newsSource = cardClone.querySelector("#news-source");
-    const newsDesc = cardClone.querySelector("#news-desc");
-
-    newsImg.src = article.urlToImage;
-    newsTitle.innerHTML = article.title;
-    newsDesc.innerHTML = article.description;
-
-    const date = new Date(article.publishedAt).toLocaleString("en-US", {
-        timeZone: "Asia/Jakarta",
-    });
-
-    newsSource.innerHTML = `${article.source.name} · ${date}`;
-
-    cardClone.firstElementChild.addEventListener("click", () => {
-        window.open(article.url, "_blank");
-    });
-}
-
-let curSelectedNav = null;
-function onNavItemClick(id) {
-    fetchNews(id);
-    const navItem = document.getElementById(id);
-    curSelectedNav?.classList.remove("active");
-    curSelectedNav = navItem;
-    curSelectedNav.classList.add("active");
-}
-
-const searchButton = document.getElementById("search-button");
-const searchText = document.getElementById("search-text");
-
-searchButton.addEventListener("click", () => {
-    const query = searchText.value;
-    if (!query) return;
-    fetchNews(query);
-    curSelectedNav?.classList.remove("active");
-    curSelectedNav = null;
-});
