@@ -5,30 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News App</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
         <div class="main-nav container flex">
             <a href="#" onclick="reload()" class="company-logo">
-                <h1>Latest News</h1>
+                <img src="./assets/logo.png" alt="company logo">
             </a>
             <div class="nav-links">
                 <ul class="flex">
-                    <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">Cricket</li>
+                    <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
                     <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">Finance</li>
                     <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">Politics</li>
-                    <li class="hover-link nav-item" id="technolgy" onclick="onNavItemClick('technolgy')">Technology</li>
-                    <li class="hover-link nav-item" id="education" onclick="onNavItemClick('education')">Education</li>
-                    <li class="hover-link nav-item" id="entertainment" onclick="onNavItemClick('entertainment')">Entertainment</li>
-                    <li class="hover-link nav-item" id="lifestyle" onclick="onNavItemClick('lifestyle')">LifeStyle</li>
-                    <!-- <li class="hover-link nav-item" id="hotel" onclick="onNavItemClick('hotel')">Hotels</li> -->
-                    
                 </ul>
             </div>
             <div class="search-bar flex">
-                <input id="search-text" type="text" class="news-input" placeholder="e.g. Technology">
+                <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
                 <button id="search-button" class="search-button">Search</button>
             </div>
         </div>
@@ -54,6 +48,6 @@
         </div>
     </template>
 
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html> 
