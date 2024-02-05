@@ -1,53 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsweb</title>
 
-    <nav>
-        <div class="main-nav container flex">
-            <a href="#" onclick="reload()" class="company-logo">
-                <img src="./assets/logo.png" alt="company logo">
-            </a>
-            <div class="nav-links">
-                <ul class="flex">
-                    <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
-                    <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">Finance</li>
-                    <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">Politics</li>
-                </ul>
-            </div>
-            <div class="search-bar flex">
-                <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
-                <button id="search-button" class="search-button">Search</button>
-            </div>
-        </div>
-    </nav>
-    
+    <!--font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <main>
-        <div class="cards-container container flex" id="cards-container">
-            
-        </div>
-    </main>
+    <!--Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-    <template id="template-news-card">
-        <div class="card">
-            <div class="card-header">
-                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
-            </div>
-            <div class="card-content">
-                <h3 id="news-title">This is the Title</h3>
-                <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
-                <p class="news-desc" id="news-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae saepe quis voluptatum quisquam vitae doloremque facilis molestias quae ratione cumque!</p>
-            </div>
+    <!---css style-->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="./logo.png" width="120px" />
+
+      <div class="inputSearch desktop">
+        <form id="searchForm">
+          <input type="text" placeholder="Type to search..." id="searchInput" />
+          <span> <i class="fa-solid fa-search"></i></span>
+        </form>
+      </div>
+      <nav class="desktop">
+        <ul>
+          <li onclick="Search('ipl2023')">IPL 2023</li>
+          <li onclick="Search('tech')">Tech</li>
+          <li onclick="Search('food')">Food</li>
+          <li onclick="Search('movies')">Movies</li>
+          <li onclick="Search('business')">Business</li>
+        </ul>
+      </nav>
+
+      <div class="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <!------>
+      <div class="mobile hidden">
+        <nav>
+          <ul>
+            <li onclick="Search('ipl2023')">IPL 2023</li>
+            <li onclick="Search('tech')">Tech</li>
+            <li onclick="Search('food')">Food</li>
+            <li onclick="Search('movies')">Movies</li>
+            <li onclick="Search('business')">Business</li>
+          </ul>
+        </nav>
+        <div class="inputSearch">
+        <form id="searchFormMobile" id="searchInputMobile">
+          <input type="text" placeholder="Type to search..." />
+          <span> <i class="fa-solid fa-search"></i></span>
         </div>
-    </template>
+        </form>
+      </div>
+    </header>
+
+    <!-- main  -->
+
+    <main></main>
 
     <script src="script.js"></script>
-</body>
-</html> 
+  </body>
+</html>
