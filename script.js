@@ -7,13 +7,13 @@
 
 
 const API_KEY = "50a0fcc9262046aa807966267cd2ef2e";
-const url = "https://newsapi.org/v2/everything?";
+const url = "https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
 
 function reload() {
     window.location.reload();const API_KEY = "50a0fcc9262046aa807966267cd2ef2e";
-const url = "https://newsapi.org/v2/everything?";
+const url = "https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
 
